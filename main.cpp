@@ -3,7 +3,6 @@
  *
  * Cipher program to encrypt\decrypt using
  * - Huffman
- * - LZW
  * - LZ77
  * - Deflate
  *
@@ -11,14 +10,12 @@
  *  <CifeProject> -e Huffman "text_to_encrypt"
  *  <CifeProject> -d Huffman "text_to_encrypt"
  *
- *  <CifeProject> -e LZW "text_to_encrypt"
- *  <CifeProject> -d LZW "text_to_encrypt"
  *
  *  <CifeProject> -e LZ77 "text_to_encrypt"
- *  <CifeProject> -d LZW "text_to_encrypt"
+ *  <CifeProject> -d LZ77 "text_to_encrypt"
  *
  *  <CifeProject> -e Deflate "text_to_encrypt"
- *  <CifeProject> -d LZW "text_to_encrypt"
+ *  <CifeProject> -d Deflate "text_to_encrypt"
  */
 
 #include "utils/helper.h"
