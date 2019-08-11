@@ -1,6 +1,6 @@
 # CifeProject
 Implemetation of different encryption\decryption algorithms
-
+test
  - Huffman
  - LZ77
  - Deflate
