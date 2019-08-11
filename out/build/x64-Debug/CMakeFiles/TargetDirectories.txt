@@ -1,0 +1,9 @@
+D:/Sources/CifeProject/CifeProject/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+D:/Sources/CifeProject/CifeProject/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+D:/Sources/CifeProject/CifeProject/out/build/x64-Debug/src/CMakeFiles/CifeSrc.dir
+D:/Sources/CifeProject/CifeProject/out/build/x64-Debug/src/CMakeFiles/edit_cache.dir
+D:/Sources/CifeProject/CifeProject/out/build/x64-Debug/src/CMakeFiles/rebuild_cache.dir
+D:/Sources/CifeProject/CifeProject/out/build/x64-Debug/test/CMakeFiles/edit_cache.dir
+D:/Sources/CifeProject/CifeProject/out/build/x64-Debug/test/CMakeFiles/cife_boost_unit_test.dir
+D:/Sources/CifeProject/CifeProject/out/build/x64-Debug/test/CMakeFiles/cife_tests.dir
+D:/Sources/CifeProject/CifeProject/out/build/x64-Debug/test/CMakeFiles/rebuild_cache.dir
