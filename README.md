@@ -1,3 +1,5 @@
+![cmake-basics build status](https://api.travis-ci.org/Dabudabot/CifeProject.png "cmake-basics build status")
+
 # CifeProject
 Implemetation of different encryption\decryption algorithms
 test
