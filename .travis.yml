@@ -2,9 +2,22 @@ language: cpp
 
 compiler: gcc 
 
-before_script: 
-- mkdir build 
-- cd build 
-- cmake ..
+install:
+# Boost
+  - sudo apt install -qq libboost-all-dev
+# Codecov
+  - sudo pip install codecov
 
-script: make && make test
+before_script: 
+  - mkdir build 
+  - cd build 
+  - cmake ..
+
+script: 
+  - make && make test
+# Get code coverage
+  - ./get_code_cov
+  - codecov
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
