@@ -17,6 +17,7 @@ before_script:
   - cmake ..
 
 script: 
+  - export CC=gcc-7
   - make && make test
 # Get code coverage
   - ./get_code_cov
