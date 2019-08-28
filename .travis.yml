@@ -18,9 +18,9 @@ before_script:
 
 script: 
   - export CC=gcc-7
-  - make && make test
+  - make
 # Get code coverage
-  - ./get_code_cov
+  - ../get_code_cov.sh
   - codecov
 
 after_success:
