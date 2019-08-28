@@ -1,11 +1,14 @@
 language: cpp 
+dist: xenial
+compiler: gcc
+sudo: true
 
-compiler: gcc 
 
-install:
-# Boost
-  - sudo apt install -qq libboost-all-dev
-# Codecov
+addons: 
+  apt: 
+    packages: libboost-all-dev
+    
+before_install:
   - sudo pip install codecov
 
 before_script: 
