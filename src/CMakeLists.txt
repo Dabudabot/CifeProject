@@ -11,3 +11,6 @@ target_link_libraries(CifeDemo CifeCryptors)
 
 set_property(TARGET CifeDemo PROPERTY CXX_STANDARD 17)
 set_property(TARGET CifeCryptors PROPERTY CXX_STANDARD 17)
+
+target_compile_options(CifeCryptors PUBLIC --coverage -O0)
+target_link_libraries(CifeCryptors PUBLIC --coverage)
