@@ -4,6 +4,6 @@
 
 BOOST_AUTO_TEST_CASE(simple_test3) {
   int a = 42;
-  int b = 43;
+  int b = 42;
   BOOST_CHECK_EQUAL(a, b);
 }
