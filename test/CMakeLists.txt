@@ -33,15 +33,31 @@ enable_testing()
 
 # Add a testing executable
 add_executable(cife_tests 
-  "main_test.cpp" 
-  "utils/helper_test.cpp" 
   "cryptors/Cryptor_test.cpp"
   "cryptors/Deflate_test.cpp"
   "cryptors/Huffman_test.cpp"
   "cryptors/LZ77_test.cpp"
 )
 
+add_executable(cife_main_tests 
+  "main_test.cpp"
+)
+
+add_executable(cife_helper_tests 
+  "utils/helper_test.cpp" 
+)
+
 target_link_libraries(cife_tests
+    cife_boost_unit_test
+    Boost::unit_test_framework
+)
+
+target_link_libraries(cife_main_tests
+    cife_boost_unit_test
+    Boost::unit_test_framework
+)
+
+target_link_libraries(cife_helper_tests
     cife_boost_unit_test
     Boost::unit_test_framework
 )
@@ -51,4 +67,14 @@ target_compile_definitions(cife_tests
         BOOST_TEST_DYN_LINK
 )
 
-add_test(test_all cife_tests)
+target_compile_definitions(cife_main_tests
+    PRIVATE
+        BOOST_TEST_DYN_LINK
+)
+
+target_compile_definitions(cife_helper_tests
+    PRIVATE
+        BOOST_TEST_DYN_LINK
+)
+
+add_test(test_all cife_tests cife_main_tests cife_helper_tests)
