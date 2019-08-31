@@ -14,4 +14,4 @@ before_script:
 
 script: 
   - export CC=gcc-7
-  - make && make test
+  - make && make CifeTest
