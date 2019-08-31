@@ -26,7 +26,7 @@ BOOST_AUTO_TEST_CASE(no_input)
   char* argv[] = { "CifeProject" };
   int result = main(1, argv);
 
-  BOOST_CHECK_EQUAL(result, 1);
+  BOOST_CHECK_EQUAL(result, 10);
 
   boost::test_tools::output_test_stream output;
   {
