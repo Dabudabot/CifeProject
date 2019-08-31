@@ -3,6 +3,9 @@
 //
 
 #include "Cryptor.h"
+#include "deflate/Deflate.h"
+#include "lz77/LZ77.h"
+#include "huffman/Huffman.h"
 
 using namespace std;
 
@@ -44,4 +47,37 @@ void Cryptor::show_statistics() {
         cout << "compression: " << compression << "%" << endl;
         cout << "---------------" << endl;
     }
+}
+
+std::unique_ptr<Cryptor> Cryptor::cryptor_factory(const string& mode, const string& type, const string& message)
+{
+  if (mode == ENCRYPT_KEY &&
+    type == HUFFMAN_KEY) {
+    return unique_ptr<Cryptor>(new HuffmanEncoder(message));
+  }
+  else if (mode == DECRYPT_KEY &&
+    type == HUFFMAN_KEY) {
+    return unique_ptr<Cryptor>(new HuffmanDecoder(message));
+
+  }
+  else if (mode == ENCRYPT_KEY &&
+    type == LZ77_KEY) {
+    return unique_ptr<Cryptor>(new LZ77Encoder(message));
+  }
+  else if (mode == DECRYPT_KEY &&
+    type == LZ77_KEY) {
+    return unique_ptr<Cryptor>(new LZ77Decoder(message));
+
+  }
+  else if (mode == ENCRYPT_KEY &&
+    type == DEFLATE_KEY) {
+    return unique_ptr<Cryptor>(new DeflateEncoder(message));
+  }
+  else if (mode == DECRYPT_KEY &&
+    type == DEFLATE_KEY) {
+    return unique_ptr<Cryptor>(new DeflateDecoder(message));
+  }
+  else {
+    throw exception();
+  }
 }
