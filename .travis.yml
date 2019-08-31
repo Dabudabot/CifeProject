@@ -8,7 +8,7 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-7
-      - libboost-all-dev
+      - libboost-test-dev
       - lcov
 
 before_install:
