@@ -1,5 +1,4 @@
 ![travis-ci.org](https://api.travis-ci.org/Dabudabot/CifeProject.png "CifeProject build status")
-[![codecov.io](https://codecov.io/github/Dabudabot/CifeProject/coverage.svg?branch=master)](https://codecov.io/github/Dabudabot/CifeProject?branch=master)
 # CifeProject
 Implemetation of different encryption\decryption algorithms
 test
