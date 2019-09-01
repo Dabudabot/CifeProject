@@ -20,6 +20,8 @@
 
 #include "cryptors/Cryptor.h"
 
+#include <iostream>
+
 using namespace std;
 
 /*
@@ -48,22 +50,24 @@ void show_usage() {
     << DEFLATE_KEY << " \"text_to_decrypt\"" << endl;
 }
 
-int main(int argc, char *argv[]) {
+int main(const int argc, char* argv[]) {
 
-    if (argc == 4) {
-        try {
-            auto cryptor = Cryptor::cryptor_factory(argv[1], argv[2], argv[3]);
-            cryptor->run();
-            cryptor->show_statistics();
-        } catch (const exception &e) {
-            cerr << e.what() << endl;
-            show_usage();
-            return 2;
-        }
-    } else {
-        show_usage();
-        return 1;
+  if (argc == 4) {
+    try {
+      auto crypt = Cryptor::cryptor_factory(argv[1], argv[2], argv[3]);
+      crypt->run();
+      crypt->show_statistics();
     }
+    catch (const exception& e) {
+      cerr << e.what() << endl;
+      show_usage();
+      return 2;
+    }
+  }
+  else {
+    show_usage();
+    return 1;
+  }
 
-    return 0;
+  return 0;
 }

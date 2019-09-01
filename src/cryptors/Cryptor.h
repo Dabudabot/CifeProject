@@ -1,17 +1,12 @@
 //
 // Created by dabudabot on 14.12.17.
 //
-// Abstract encryptor
+// Abstract encrypt
 
 #pragma once
 
-#include <iostream>
 #include <bitset>
-#include <sstream>
 #include <memory>
-#include <map>
-#include <list>
-#include <vector>
 
 /*
 * All constant keys kept here
@@ -24,19 +19,25 @@ constexpr char LZ77_KEY[] = "LZ77";
 constexpr char DEFLATE_KEY[] = "Deflate";
 
 class Cryptor {
-private:
-    std::string in_message;
-    std::string out_message;
-    bool show = false;
-public:
 
-  explicit Cryptor(std::string message) : in_message(std::move(message)) {};
-  virtual void run()=0;
+  std::string in_message_;
+  std::string out_message_;
+  bool show_ = false;
+public:
+  virtual ~Cryptor() = default;
+
+  Cryptor(Cryptor&) = delete;
+  Cryptor(Cryptor&&) = delete;
+  Cryptor& operator= (const Cryptor&) = delete;
+  Cryptor& operator= (Cryptor&&) = delete;
+
+  explicit Cryptor(std::string message) : in_message_(std::move(message)) {};
+  virtual void run() = 0;
   virtual void show_statistics();
-  void set_out_message(std::string message) {this->out_message = std::move(message);}
-  std::string get_in_message() {return in_message;}
-  std::string get_out_message() {return out_message;}
-  void set_show(bool show) {this->show = show;}
+  void set_out_message(std::string message) { this->out_message_ = std::move(message); }
+  [[nodiscard]] std::string get_in_message() const { return in_message_; }
+  [[nodiscard]] std::string get_out_message() const { return out_message_; }
+  void set_show(const bool show) { this->show_ = show; }
 
   /*
   * Factory method to get correct cryption algorithm depending on mode and type
@@ -46,5 +47,5 @@ public:
     const std::string& type,
     const std::string& message
   );
-  
+
 };

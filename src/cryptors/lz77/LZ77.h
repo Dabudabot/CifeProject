@@ -6,35 +6,33 @@
 
 #include "../Cryptor.h"
 
-class LZ77Node {
-private:
-    int offset;
-    int amount;
-    char symbol;
+class Lz77Node {
+
+    char symbol_;
+    int offset_;
+    int amount_;
+
 public:
-    explicit LZ77Node(char c,
-                      int offset,
-                      int amount) :
-            symbol(c),
-            offset(offset),
-            amount(amount) {}
-    char get_symbol() {return symbol;}
-    int get_offset() {return offset;}
-    int get_amount() {return amount;}
+    explicit Lz77Node(const char c,
+                      const int offset,
+                      const int amount) :
+            symbol_(c),
+            offset_(offset),
+            amount_(amount) {}
+
+    [[nodiscard]] char get_symbol() const {return symbol_;}
+    [[nodiscard]] int get_offset() const {return offset_;}
+    [[nodiscard]] int get_amount() const {return amount_;}
 };
 
-class LZ77Encoder : public Cryptor {
-private:
-
+class Lz77Encoder final : public Cryptor {
 public:
-    explicit LZ77Encoder(const std::string &message) : Cryptor(message) {set_show(true);};
+    explicit Lz77Encoder(const std::string &message) : Cryptor(message) {set_show(true);};
     void run() override;
 };
 
-class LZ77Decoder : public Cryptor {
-private:
-
+class Lz77Decoder final : public Cryptor {
 public:
-    explicit LZ77Decoder(const std::string &message) : Cryptor(message) {};
+    explicit Lz77Decoder(const std::string &message) : Cryptor(message) {};
     void run() override;
 };
