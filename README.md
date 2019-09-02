@@ -1,5 +1,4 @@
 ![travis-ci.org](https://api.travis-ci.org/Dabudabot/CifeProject.png "CifeProject build status")
-[![codecov.io](https://codecov.io/github/Dabudabot/CifeProject/coverage.svg?branch=master)](https://codecov.io/github/Dabudabot/CifeProject?branch=master)
 # CifeProject
 Implemetation of different encryption\decryption algorithms
 test
@@ -19,10 +18,10 @@ test
  
  Huffman encoding
  * encoded sequence is represented as:
- * n = 1 byte long number - dictionary length
- * n times 1 byte long char and 1 byte long frequency
- * finally encoded message
+ ** 1 byte long number - dictionary length
+ ** dictionary length times 1 byte long char and 1 byte long frequency
+ ** finally encoded message
  
  LZ77 encoding
  * encoded sequence is represented as:
- * sequence of chars and [Offset,Lenght] <- reference
+ ** sequence of chars and [Offset,Lenght] <- reference

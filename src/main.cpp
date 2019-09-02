@@ -18,26 +18,55 @@
  *  <CifeProject> -d Deflate "text_to_encrypt"
  */
 
-#include "utils/helper.h"
+#include "cryptors/Cryptor.h"
+
+#include <iostream>
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
+/*
+ * help message for dummies
+ */
+void show_usage() {
+  cout << "usage: " << endl;
+  cout << "  <CifeProject> " << ENCRYPT_KEY << " "
+    << HUFFMAN_KEY << " \"text_to_encrypt\"" << endl;
+  cout << "  <CifeProject> " << DECRYPT_KEY << " "
+    << HUFFMAN_KEY << " \"text_to_decrypt\"" << endl;
 
-    if (argc == 4) {
-        try {
-            auto cryptor = helper::cryptor_factory(argv[1], argv[2], argv[3]);
-            cryptor->run();
-            cryptor->show_statistics();
-        } catch (const exception &e) {
-            cerr << e.what() << endl;
-            helper::show_usage();
-            return 2;
-        }
-    } else {
-        helper::show_usage();
-        return 1;
+  cout << "  <CifeProject> " << ENCRYPT_KEY << " "
+    << LZ77_KEY << " \"text_to_encrypt\"" << endl;
+  cout << "  <CifeProject> " << DECRYPT_KEY << " "
+    << LZ77_KEY << " \"text_to_decrypt\"" << endl;
+
+  cout << "  <CifeProject> " << ENCRYPT_KEY << " "
+    << DEFLATE_KEY << " \"text_to_encrypt\"" << endl;
+  cout << "  <CifeProject> " << DECRYPT_KEY << " "
+    << DEFLATE_KEY << " \"text_to_decrypt\"" << endl;
+}
+
+int main(const int argc, char* argv[]) {
+
+  if (argc == 4) {
+    try {
+      auto crypt = Cryptor::cryptor_factory(
+        argv[1],
+        argv[2], 
+        argv[3]
+      );
+      crypt->run();
+      crypt->show_statistics();
     }
+    catch (const runtime_error& e) {
+      cerr << e.what() << endl;
+      show_usage();
+      return 2;
+    }
+  }
+  else {
+    show_usage();
+    return 1;
+  }
 
-    return 0;
+  return 0;
 }

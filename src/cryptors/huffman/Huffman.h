@@ -4,34 +4,34 @@
 
 #pragma once
 #include "../Cryptor.h"
-
+#include <list>
+#include <map>
 /*
  * Node to build Huffman tree
  */
 class HuffmanNode {
-private:
-    char c;
-    int n;
-    std::shared_ptr<HuffmanNode> left, right;
+  char c_;
+  int n_;
+  std::shared_ptr<HuffmanNode> left_, right_;
 public:
-    HuffmanNode(char c, int n) : c(c), n(n), left(nullptr), right(nullptr) {};
-    HuffmanNode(std::shared_ptr<HuffmanNode> left,
-      std::shared_ptr<HuffmanNode> right);
+  HuffmanNode(const char c, const int n) : c_(c), n_(n), left_(nullptr), right_(nullptr) {};
+  HuffmanNode(const std::shared_ptr<HuffmanNode>& left,
+              const std::shared_ptr<HuffmanNode>& right);
 
-    char get_c() {return c;}
-    int get_n() {return n;}
-    std::shared_ptr<HuffmanNode> get_left() {return left;}
-    std::shared_ptr<HuffmanNode> get_right() {return right;}
+  [[nodiscard]] char get_c() const { return c_; }
+  [[nodiscard]] int get_n() const { return n_; }
+  [[nodiscard]] std::shared_ptr<HuffmanNode> get_left() const { return left_; }
+  [[nodiscard]] std::shared_ptr<HuffmanNode> get_right() const { return right_; }
 };
 
 /*
  * To sort leaves we need to know how to compare them
  */
 struct HuffmanComparator {
-    bool operator()(const std::shared_ptr<HuffmanNode> &l,
-                    const std::shared_ptr<HuffmanNode> &r) const {
-        return l->get_n() < r->get_n();
-    }
+  bool operator()(const std::shared_ptr<HuffmanNode>& l,
+    const std::shared_ptr<HuffmanNode>& r) const {
+    return l->get_n() < r->get_n();
+  }
 };
 
 /*
@@ -41,16 +41,16 @@ struct HuffmanComparator {
  * n times 1 byte long char and 1 byte long frequency
  * finally encoded message
  */
-class HuffmanEncoder : public Cryptor {
-private:
-    std::list<std::shared_ptr<HuffmanNode>> nodes;
-    std::string temp_code;
-    std::map<char, std::string> table;
+class HuffmanEncoder final : public Cryptor {
 
-    void build(const std::shared_ptr<HuffmanNode> &root);
+  std::list<std::shared_ptr<HuffmanNode>> nodes_;
+  std::string temp_code_;
+  std::map<char, std::string> table_;
+
+  void build(const std::shared_ptr<HuffmanNode>& root);
 public:
-    explicit HuffmanEncoder(const std::string &message) : Cryptor(message) {set_show(true);};
-    void run() override;
+  explicit HuffmanEncoder(const std::string& message) : Cryptor(message) { set_show(true); };
+  void run() override;
 };
 
 /*
@@ -60,10 +60,10 @@ public:
  * n times 1 byte long char and 1 byte long frequency
  * finally encoded message
  */
-class HuffmanDecoder : public Cryptor {
-private:
-    std::list<std::shared_ptr<HuffmanNode>> nodes;
+class HuffmanDecoder final : public Cryptor {
+
+  std::list<std::shared_ptr<HuffmanNode>> nodes_;
 public:
-    explicit HuffmanDecoder(const std::string &message) : Cryptor(message) {};
-    void run() override;
+  explicit HuffmanDecoder(const std::string& message) : Cryptor(message) {};
+  void run() override;
 };

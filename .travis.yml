@@ -1,17 +1,19 @@
-language: cpp 
-compiler: gcc
-sudo: true
-  
+sudo: false
+dist: trusty
+language: cpp
+
 addons: 
   apt: 
-    packages: 
-      - libboost-all-dev
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-7
+      - libboost-test-dev
 
-before_script: 
-  - mkdir build 
-  - cd build 
-  - cmake ..
+before_install:
+  - eval "CC=gcc-7 && CXX=g++-7"
 
-script: 
-  - export CC=gcc-7
-  - make && make cife_main_tests
+script:
+  - cmake -D CMAKE_BUILD_TYPE=Debug .
+  - cmake --build . -- -j2 
+  - ctest -j2 --output-on-failure
