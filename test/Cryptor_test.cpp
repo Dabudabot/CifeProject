@@ -12,13 +12,13 @@ BOOST_AUTO_TEST_CASE(SetShow) {
 
   const auto before_show = cryptor->get_show();
 
-  BOOST_CHECK_EQUAL(before_show, false);
+  BOOST_CHECK_EQUAL(before_show, true);
 
-  cryptor->set_show(true);
+  cryptor->set_show(false);
 
   const auto after_show = cryptor->get_show();
 
-  BOOST_CHECK_EQUAL(after_show, true);
+  BOOST_CHECK_EQUAL(after_show, false);
 }
 
 BOOST_AUTO_TEST_CASE(SetOut) {
