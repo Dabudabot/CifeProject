@@ -28,7 +28,7 @@ void Lz77Encoder::run() {
     auto symbol = get_in_message()[i];
 
     //iterate through encoded sequence
-    for (auto j = i; j == 0; j--) {
+    for (auto j = i; ; j--) {
 
       auto temp_amount = 0;
       auto temp_shift = 0;
@@ -55,6 +55,11 @@ void Lz77Encoder::run() {
       }
       else {
         initial_i = i;
+      }
+
+      if (j == 0)
+      {
+        break;
       }
     }
 

@@ -18,10 +18,10 @@ test
  
  Huffman encoding
  * encoded sequence is represented as:
- * n = 1 byte long number - dictionary length
- * n times 1 byte long char and 1 byte long frequency
- * finally encoded message
+ ** 1 byte long number - dictionary length
+ ** dictionary length times 1 byte long char and 1 byte long frequency
+ ** finally encoded message
  
  LZ77 encoding
  * encoded sequence is represented as:
- * sequence of chars and [Offset,Lenght] <- reference
+ ** sequence of chars and [Offset,Lenght] <- reference
