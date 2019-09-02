@@ -57,7 +57,7 @@ int main(const int argc, char* argv[]) {
       crypt->run();
       crypt->show_statistics();
     }
-    catch (const exception& e) {
+    catch (const runtime_error& e) {
       cerr << e.what() << endl;
       show_usage();
       return 2;

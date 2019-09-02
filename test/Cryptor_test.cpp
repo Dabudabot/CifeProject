@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(WrongMode) {
     "WRONG",
     "Huffman",
     "Test message"
-  ), std::exception);
+  ), std::runtime_error);
 }
 
 BOOST_AUTO_TEST_CASE(WrongType) {
@@ -49,5 +49,5 @@ BOOST_AUTO_TEST_CASE(WrongType) {
     "-e",
     "WRONG",
     "Test message"
-  ), std::exception);
+  ), std::runtime_error);
 }

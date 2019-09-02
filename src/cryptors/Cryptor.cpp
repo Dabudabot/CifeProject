@@ -85,7 +85,7 @@ std::unique_ptr<Cryptor> Cryptor::cryptor_factory(
     return std::unique_ptr<Cryptor>(std::make_unique<DeflateDecoder>(message));
   }
 
-  throw exception("Not implemented factory case");
+  throw runtime_error("Not implemented factory case");
 }
 
 std::unique_ptr<Cryptor> Cryptor::cryptor_factory(
@@ -104,7 +104,7 @@ std::unique_ptr<Cryptor> Cryptor::cryptor_factory(
   }
   else {
     const auto msg = "Not possible mode: " + mode;
-    throw exception(msg.c_str());
+    throw runtime_error(msg.c_str());
   }
 
   if (type == HUFFMAN_KEY) {
@@ -118,7 +118,7 @@ std::unique_ptr<Cryptor> Cryptor::cryptor_factory(
   }
   else {
     const auto msg = "Not possible type: " + type;
-    throw exception(msg.c_str());
+    throw runtime_error(msg.c_str());
   }
 
   return cryptor_factory(b_mode, c_type, message);
