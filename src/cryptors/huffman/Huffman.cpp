@@ -6,6 +6,7 @@
 #include "Huffman.h"
 #include <iostream>
 #include <sstream>
+#include <bitset>
 
 using namespace std;
 

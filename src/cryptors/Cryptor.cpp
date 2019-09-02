@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <bitset>
 
 using namespace std;
 
@@ -53,33 +54,72 @@ void Cryptor::show_statistics() {
   }
 }
 
-std::unique_ptr<Cryptor> Cryptor::cryptor_factory(const string& mode, const string& type, const string& message)
-{
-  if (mode == ENCRYPT_KEY &&
-    type == HUFFMAN_KEY) {
+std::unique_ptr<Cryptor> Cryptor::cryptor_factory(
+  const bool mode,
+  const Cryptors type,
+  const std::string& message
+) {
+  if (mode &&
+    type == Cryptors::Huffman) {
     return std::unique_ptr<Cryptor>(std::make_unique<HuffmanEncoder>(message));
   }
-  if (mode == DECRYPT_KEY &&
-    type == HUFFMAN_KEY) {
+  if (!mode &&
+    type == Cryptors::Huffman) {
     return std::unique_ptr<Cryptor>(std::make_unique<HuffmanDecoder>(message));
   }
-  if (mode == ENCRYPT_KEY &&
-    type == LZ77_KEY) {
+  if (mode &&
+    type == Cryptors::Lz77) {
     return std::unique_ptr<Cryptor>(std::make_unique<Lz77Encoder>(message));
   }
-  if (mode == DECRYPT_KEY &&
-    type == LZ77_KEY) {
+  if (!mode &&
+    type == Cryptors::Lz77) {
     return std::unique_ptr<Cryptor>(std::make_unique<Lz77Decoder>(message));
 
   }
-  if (mode == ENCRYPT_KEY &&
-    type == DEFLATE_KEY) {
+  if (mode &&
+    type == Cryptors::Deflate) {
     return std::unique_ptr<Cryptor>(std::make_unique<DeflateEncoder>(message));
   }
-  if (mode == DECRYPT_KEY &&
-    type == DEFLATE_KEY) {
+  if (!mode &&
+    type == Cryptors::Deflate) {
     return std::unique_ptr<Cryptor>(std::make_unique<DeflateDecoder>(message));
   }
-  
-  throw exception();
+
+  throw exception("Not implemented factory case");
+}
+
+std::unique_ptr<Cryptor> Cryptor::cryptor_factory(
+  const std::string& mode,
+  const std::string& type,
+  const std::string& message)
+{
+  bool b_mode;
+  Cryptors c_type;
+
+  if (mode == ENCRYPT_KEY) {
+    b_mode = true;
+  }
+  else if (mode == DECRYPT_KEY) {
+    b_mode = false;
+  }
+  else {
+    const auto msg = "Not possible mode: " + mode;
+    throw exception(msg.c_str());
+  }
+
+  if (type == HUFFMAN_KEY) {
+    c_type = Cryptors::Huffman;
+  }
+  else if (type == LZ77_KEY) {
+    c_type = Cryptors::Lz77;
+  }
+  else if (type == DEFLATE_KEY) {
+    c_type = Cryptors::Deflate;
+  }
+  else {
+    const auto msg = "Not possible type: " + type;
+    throw exception(msg.c_str());
+  }
+
+  return cryptor_factory(b_mode, c_type, message);
 }

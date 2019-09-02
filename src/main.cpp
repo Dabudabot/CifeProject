@@ -35,11 +35,6 @@ void show_usage() {
     << HUFFMAN_KEY << " \"text_to_decrypt\"" << endl;
 
   cout << "  <CifeProject> " << ENCRYPT_KEY << " "
-    << LZW_KEY << " \"text_to_encrypt\"" << endl;
-  cout << "  <CifeProject> " << DECRYPT_KEY << " "
-    << LZW_KEY << " \"text_to_decrypt\"" << endl;
-
-  cout << "  <CifeProject> " << ENCRYPT_KEY << " "
     << LZ77_KEY << " \"text_to_encrypt\"" << endl;
   cout << "  <CifeProject> " << DECRYPT_KEY << " "
     << LZ77_KEY << " \"text_to_decrypt\"" << endl;
@@ -54,7 +49,11 @@ int main(const int argc, char* argv[]) {
 
   if (argc == 4) {
     try {
-      auto crypt = Cryptor::cryptor_factory(argv[1], argv[2], argv[3]);
+      auto crypt = Cryptor::cryptor_factory(
+        argv[1],
+        argv[2], 
+        argv[3]
+      );
       crypt->run();
       crypt->show_statistics();
     }
